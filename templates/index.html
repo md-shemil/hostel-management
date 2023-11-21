@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Students Database</title>
+</head>
+<body>
+    <h1>Hostel Students Database</h1>
+    
+    <!-- Search form -->
+    <form method="get" action="{{ url_for('index') }}">
+        <label for="search">Search:</label>
+        <input type="text" name="search" id="search" value="{{ search }}">
+        <input type="submit" value="Search">
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Parent Name</th>
+            <th>Parent Phone</th>
+            <th>Address</th>
+            <th>Room Number</th>
+            <th>Course</th>
+            <th>Year</th>
+            <th>Action</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            <td>{{ student[4] }}</td>
+            <td>{{ student[5] }}</td>
+            <td>{{ student[6] }}</td>
+            <td>{{ student[7] }}</td>
+            <td>
+                <a href="{{ url_for('edit_student', student_id=student[0]) }}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('add_student') }}">Add Student</a>
+</body>
+</html>

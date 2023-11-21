@@ -1,0 +1,41 @@
+<!-- templates/edit_student.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+</head>
+<body>
+    <h1>Edit Student</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: {% if 'error' in message %}red{% else %}green{% endif %};">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post">
+        <label for="student_name">Student Name:</label>
+        <input type="text" name="student_name" value="{{ student_data[1] }}" required><br>
+        <label for="parent_name">Parent Name:</label>
+        <input type="text" name="parent_name" value="{{ student_data[2] }}" required><br>
+        <label for="parent_phone">Parent Phone:</label>
+        <input type="text" name="parent_phone" value="{{ student_data[3] }}" required><br>
+        <label for="address">Address:</label>
+        <input type="text" name="address" value="{{ student_data[4] }}" required><br>
+        <label for="room_number">Room Number:</label>
+        <input type="number" name="room_number" value="{{ student_data[5] }}" required><br>
+        <label for="course">Course:</label>
+        <input type="text" name="course" value="{{ student_data[6] }}" required><br>
+        <label for="year">Year:</label>
+        <input type="number" name="year" value="{{ student_data[7] }}" required><br>
+        <input type="submit" value="Update">
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
